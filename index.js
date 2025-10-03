@@ -9,7 +9,8 @@ app.use(express.json());
 // GET all documents
 app.get("/", async (req, res) => {
   try {
-    let myDB = await dbconnection(); // your collection
+    let myDB = await dbconnection();
+    let StudentCollection = myDB.collection("EngineeringBlock"); // your collection
     let data = await StudentCollection.find().toArray();
     res.send(data);
   } catch (err) {
