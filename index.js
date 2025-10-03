@@ -11,7 +11,7 @@ app.get("/", async (req, res) => {
   try {
     let myDB = await dbconnection();
     let StudentCollection = myDB.collection("EngineeringBlock"); // your collection
-    let data = await StudentCollection.find().toArray();
+    let data = await StudentCollection.find();
     res.send(data);
   } catch (err) {
     console.error(err);
