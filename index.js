@@ -1,9 +1,9 @@
 // index.js
-let express = require("express");
-let { dbconnection } = require("./dbConnection"); // use centralized db connection
+const express = require("express");
+const { dbconnection } = require("./dbConnection"); // use centralized db connection
 require("dotenv").config();
 
-let app = express();
+const app = express();
 app.use(express.json());
 
 // GET all documents
