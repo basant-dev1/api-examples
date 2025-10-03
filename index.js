@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-let myDB = await dbconnection();
+let myDB = dbconnection();
 let StudentCollection = myDB.collection("EngineeringBlock");
 
 // GET all documents
