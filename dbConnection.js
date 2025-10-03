@@ -1,13 +1,17 @@
-const {MongoClient} = require("mongodb")
+// dbConnection.js
+const { MongoClient } = require("mongodb");
+require("dotenv").config();
 
-let dbconnectionURL = "mongodb://127.0.0.1:27017"
-
+const dbconnectionURL = process.env.MONGO_URI; // Atlas URI from env
 const client = new MongoClient(dbconnectionURL);
 
-let dbconnection = async() =>{
-        await client.connect();
-        let db = client.db("Library")
-        return db;
-}
+let dbconnection = async () => {
+  if (!client.topology?.isConnected()) {
+    await client.connect();
+    console.log("✅ Connected to MongoDB Atlas");
+  }
+  const db = client.db("Library_Management"); // Your DB name
+  return db;
+};
 
-module.exports = {dbconnection}
+module.exports = { dbconnection };
