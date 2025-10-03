@@ -6,11 +6,13 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
+let myDB = await dbconnection();
+let StudentCollection = myDB.collection("EngineeringBlock");
+
 // GET all documents
 app.get("/", async (req, res) => {
   try {
-    let myDB = await dbconnection();
-    let StudentCollection = myDB.collection("EngineeringBlock"); // your collection
+     // your collection
     let data = await StudentCollection.find().toArray();
     res.send(data);
   } catch (err) {
@@ -22,8 +24,8 @@ app.get("/", async (req, res) => {
 // POST a new document
 app.post("/post", async (req, res) => {
   try {
-    let myDB = await dbconnection();
-    let StudentCollection = myDB.collection("EngineeringBlock"); // your collection
+//     let myDB = await dbconnection();
+//     let StudentCollection = myDB.collection("EngineeringBlock"); // your collection
 
     let obj = {
       bName: req.body.bName,
